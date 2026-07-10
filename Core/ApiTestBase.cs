@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace PlaywrightApiDemo.Core;
+namespace PlaywrightEcommerceFramework.Core;
 
 public class ApiTestBase
 {
@@ -18,20 +18,9 @@ public class ApiTestBase
 
         _apiFactory = new ApiFactory(_playwright);
 
-        request = await _apiFactory.CreateClient("https://jsonplaceholder.typicode.com");
+        request = await _apiFactory.CreateClient("https://api.practicesoftwaretesting.com/");
 
         
-
-        /*
-        request = await _playwright.APIRequest.NewContextAsync(new APIRequestNewContextOptions
-        {
-            BaseURL = "https://jsonplaceholder.typicode.com/",
-            ExtraHTTPHeaders = new Dictionary<string, string>
-            {
-                { "Accept", "application/json" }
-            }
-        });
-        */
     }
 
     [TearDown]
