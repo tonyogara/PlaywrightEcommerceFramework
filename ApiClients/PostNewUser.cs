@@ -18,11 +18,21 @@ public class PostNewUser
 
 
 
-    public async Task<IAPIResponse> CreatePostNewUserAsync(NewUser nu)
+    public async Task<IAPIResponse> CreatePostUserLoginAsync(NewUser nu)
     {
-        var postData = new
-
+        
+        /*
         {
+        "email": "customer@practicesoftwaretesting.com",
+        "password": "welcome01"
+        }
+        */
+        
+        
+        
+        
+    var postData = new
+    {
         first_name = nu.FirstName,
         last_name = nu.LastName,
         address = new
@@ -34,7 +44,6 @@ public class PostNewUser
             country = nu.Address.Country,
             postal_code = nu.Address.PostalCode
         },
-
         phone = nu.Phone,
         dob = nu.Dob,
         password = nu.Password,

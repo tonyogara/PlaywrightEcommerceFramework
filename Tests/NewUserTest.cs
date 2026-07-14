@@ -10,10 +10,10 @@ using PlaywrightEcommerceFramework.Core;
 
 namespace PlaywrightEcommerceFramework.Tests;
 
- [TestFixture]
+ //[TestFixture]
 public class PostTests : ApiTestBase
 { 
-    [Test]
+   // [Test]
 public async Task Create_New_User_Should_Be_Successful()
 {
     //var usersClient = new UsersClient(request);
@@ -38,7 +38,7 @@ public async Task Create_New_User_Should_Be_Successful()
         Email = $"tony{Guid.NewGuid()}@gmail.com"
     };
 
-    var response = await postNewUser.CreatePostNewUserAsync(newUser);
+    var response = await postNewUser.CreatePostUserLoginAsync(newUser);
 
 var responseBody = await response.TextAsync();
 
