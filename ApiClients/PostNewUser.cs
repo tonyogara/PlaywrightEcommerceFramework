@@ -1,5 +1,6 @@
 
 using Microsoft.Playwright;
+using NUnit.Framework.Constraints;
 using PlaywrightEcommerceFramework.Models;
 //using PlaywrightApiDemo.Models;
 
@@ -10,24 +11,18 @@ namespace PlaywrightEcommerceFramework.ApiClients;
 public class PostNewUser
 {
     private readonly IAPIRequestContext _request;
+    private readonly ShoppingTestContext _shoppingTestContext;
 
-    public PostNewUser(IAPIRequestContext request)
+    public PostNewUser(IAPIRequestContext request, ShoppingTestContext shoppingTestContext)
     {
         _request = request;
+        _shoppingTestContext = shoppingTestContext;
     }
 
 
 
     public async Task<IAPIResponse> CreatePostUserLoginAsync(NewUser nu)
     {
-        
-        /*
-        {
-        "email": "customer@practicesoftwaretesting.com",
-        "password": "welcome01"
-        }
-        */
-        
         
         
         
@@ -51,23 +46,7 @@ public class PostNewUser
     };
 
     
-        /*
-        {
-            userFirstName = nu.FirstName,
-            userLastName = nu.LastName,
-            userStreet = nu.Address.Street,
-            userHouse_number = nu.Address.HouseNumber,
-            userCity = nu.Address.City,
-            userState = nu.Address.State,
-            userCountry = nu.Address.Country,
-            userPostal_code = nu.Address.PostalCode,
-            userPhone = nu.Phone,
-            userDob = nu.Dob,
-            userPassword = nu.Password,
-            userEmail = nu.Email,      
-        };*/
-
-        //Console.WriteLine(JsonSerializer.Serialize(postData));
+        
 
         return await _request.PostAsync("/users/register", 
         new APIRequestContextOptions
@@ -75,5 +54,8 @@ public class PostNewUser
             DataObject = postData
         });
     }   
+
+
+    //_shoppingTestContext.User = email;
 
 }

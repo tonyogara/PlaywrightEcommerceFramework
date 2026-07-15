@@ -7,21 +7,28 @@ using PlaywrightEcommerceFramework.ApiClients;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.Core;
 using NUnit.Framework.Constraints;
+using Microsoft.Playwright;
+
+namespace PlaywrightEcommerceFramework.Helpers;
 
 
-namespace PlaywrightEcommerceFramework.Tests;
-
- [TestFixture]
-//public class PostTests : ApiTestBase
-public class NewUserTest : ApiTestBase
-{ 
-    [Test]
-public async Task Create_New_User_Should_Be_Successful()
+public class CreateNewUser : ApiTestBase
 {
-    //var usersClient = new UsersClient(request);
-    //the parameter shoppingTestContext is passed to the PostNewUser constructor from ApiTestBase
-    // to allow the test to access and modify the shared context for the shopping test.
-    var postNewUser = new PostNewUser(request, _shoppingTestContext);
+
+  private readonly IAPIRequestContext _request;
+  private readonly ShoppingTestContext _shoppingTestContext;
+
+
+public CreateNewUser(IAPIRequestContext request, ShoppingTestContext shoppingTestContext)
+{
+    _request = request;
+    _shoppingTestContext = shoppingTestContext; 
+} 
+  
+
+public async Task CreateUser()
+{
+var postNewUser = new PostNewUser(request, _shoppingTestContext);
 
     var newUser = new NewUser
     {
@@ -61,6 +68,22 @@ Console.WriteLine($"Response: {responseBody}");
 Console.WriteLine($"Email is: {_shoppingTestContext.Emaill}");
 
 Assert.That(response.Status, Is.EqualTo(201));
-}    
-
+}   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,6 +6,9 @@ using NUnit.Framework;
 using PlaywrightEcommerceFramework.ApiClients;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.Core;
+using PlaywrightEcommerceFramework.ApiResponses;
+
+
 
 
 namespace PlaywrightEcommerceFramework.Tests;
@@ -21,7 +24,8 @@ public async Task User_Login_Should_Be_Successful()
 
     var existingUser = new ExistingUser
     {
-        email = "tony29970a2a-5105-4999-aad3-a52a2732ce04@gmail.com",
+        //email = "tony556c7dd3-b66c-4fa7-82c7-3ad341297f07@gmail.com",
+        email = _shoppingTestContext.Emaill,
         password = "P@55word1111111"
     };    
 
@@ -31,6 +35,15 @@ var responseBody = await response.TextAsync();
 
 Console.WriteLine($"Status: {response.Status}");
 Console.WriteLine($"Response: {responseBody}");
+
+var loginResponse = JsonSerializer.Deserialize<LoginResponse>(responseBody);
+//Console.WriteLine(loginResponse?.Token);
+Console.WriteLine($"Token isssss: {loginResponse?.Token}");
+
+_shoppingTestContext.Token = loginResponse?.Token ?? "";
+Console.WriteLine($"Token in shoppingTestContext: {_shoppingTestContext.Token}");
+Console.WriteLine($"Email in shoppingTestContext: {_shoppingTestContext.Emaill}");
+
 
 Assert.That(response.Status, Is.EqualTo(200), "Expected status code 200 for successful login.");
 }    

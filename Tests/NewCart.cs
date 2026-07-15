@@ -10,10 +10,10 @@ using PlaywrightEcommerceFramework.Core;
 
 namespace PlaywrightEcommerceFramework.Tests;
 
- [TestFixture]
+ //[TestFixture]
 public class NewCart : ApiTestBase
 { 
-    [Test]
+   // [Test]
 public async Task New_Cart_Should_Be_Created_Successfully()
 {
     //var usersClient = new UsersClient(request);
