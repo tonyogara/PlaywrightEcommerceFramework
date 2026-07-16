@@ -8,6 +8,7 @@ using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.Core;
 using NUnit.Framework.Constraints;
 using Microsoft.Playwright;
+using PlaywrightEcommerceFramework.Tests;
 
 namespace PlaywrightEcommerceFramework.Helpers;
 
@@ -17,15 +18,19 @@ public class CreateNewUser : ApiTestBase
 
   private readonly IAPIRequestContext _request;
   private readonly ShoppingTestContext _shoppingTestContext;
+  protected UserLogin _userLogin = new UserLogin();
+
 
 
 public CreateNewUser(IAPIRequestContext request, ShoppingTestContext shoppingTestContext)
 {
     _request = request;
-    _shoppingTestContext = shoppingTestContext; 
-} 
-  
+    _shoppingTestContext = shoppingTestContext;
+    _userLogin = new UserLogin();
+}
 
+
+/*
 public async Task CreateUser()
 {
 var postNewUser = new PostNewUser(request, _shoppingTestContext);
@@ -69,6 +74,10 @@ Console.WriteLine($"Email is: {_shoppingTestContext.Emaill}");
 
 Assert.That(response.Status, Is.EqualTo(201));
 }   
+
+*/
+
+
 }
 
 

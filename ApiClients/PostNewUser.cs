@@ -4,10 +4,7 @@ using NUnit.Framework.Constraints;
 using PlaywrightEcommerceFramework.Models;
 //using PlaywrightApiDemo.Models;
 
-
 namespace PlaywrightEcommerceFramework.ApiClients;
-
-
 public class PostNewUser
 {
     private readonly IAPIRequestContext _request;
@@ -23,9 +20,7 @@ public class PostNewUser
 
     public async Task<IAPIResponse> CreatePostUserLoginAsync(NewUser nu)
     {
-        
-        
-        
+            
     var postData = new
     {
         first_name = nu.FirstName,
@@ -45,9 +40,6 @@ public class PostNewUser
         email = nu.Email
     };
 
-    
-        
-
         return await _request.PostAsync("/users/register", 
         new APIRequestContextOptions
         {
@@ -55,7 +47,5 @@ public class PostNewUser
         });
     }   
 
-
-    //_shoppingTestContext.User = email;
 
 }
