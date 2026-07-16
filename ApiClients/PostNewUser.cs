@@ -1,10 +1,8 @@
 
 using Microsoft.Playwright;
-using NUnit.Framework.Constraints;
 using PlaywrightEcommerceFramework.Models;
-//using PlaywrightApiDemo.Models;
 
-namespace PlaywrightEcommerceFramework.ApiClients;
+
 public class PostNewUser
 {
     private readonly IAPIRequestContext _request;
@@ -40,6 +38,15 @@ public class PostNewUser
         email = nu.Email
     };
 
+    _shoppingTestContext.User = nu; 
+
+/*
+_shoppingTestContext.User = nu; 
+
+  
+
+return await _request.PostAsync(...); 
+*/
         return await _request.PostAsync("/users/register", 
         new APIRequestContextOptions
         {

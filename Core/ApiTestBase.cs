@@ -1,5 +1,6 @@
 using Microsoft.Playwright;
 using NUnit.Framework;
+using PlaywrightEcommerceFramework.Models;
 
 namespace PlaywrightEcommerceFramework.Core;
 

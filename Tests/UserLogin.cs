@@ -42,7 +42,7 @@ Console.WriteLine($"Token isssss: {loginResponse?.Token}");
 
 _shoppingTestContext.Token = loginResponse?.Token ?? "";
 Console.WriteLine($"Token in shoppingTestContext: {_shoppingTestContext.Token}");
-Console.WriteLine($"Email in shoppingTestContext: {_shoppingTestContext.Emaill}");
+//Console.WriteLine($"Email in shoppingTestContext: {_shoppingTestContext.Emaill}");
 
 
 Assert.That(response.Status, Is.EqualTo(200), "Expected status code 200 for successful login.");

@@ -6,15 +6,50 @@ using NUnit.Framework;
 using PlaywrightEcommerceFramework.ApiClients;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.Core;
+using PlaywrightEcommerceFramework.Workflows;
 using NUnit.Framework.Constraints;
+using Microsoft.Playwright.Core;
 
 
 namespace PlaywrightEcommerceFramework.Tests;
 
  [TestFixture]
-//public class PostTests : ApiTestBase
+
 public class NewUserTest : ApiTestBase
 { 
+
+public UserWorkflow _userWorkflow;
+
+[Test]
+public async Task Create_New_User_Should_Be_Successfully()
+{
+    _userWorkflow = new UserWorkflow(request, _shoppingTestContext);
+    await _userWorkflow.CreateAndLogin();
+
+    Console.WriteLine("User name: " + _shoppingTestContext.User.FirstName + " " + _shoppingTestContext.User.LastName);
+    Console.WriteLine("User email: " + _shoppingTestContext.User.Email);
+    Console.WriteLine("User password: " + _shoppingTestContext.User.Password);
+    Console.WriteLine("User address: " + _shoppingTestContext.User.Address.Street + " " + _shoppingTestContext.User.Address.HouseNumber + ", " +
+                      _shoppingTestContext.User.Address.City + ", " + _shoppingTestContext.User.Address.State + ", " +
+                      _shoppingTestContext.User.Address.Country + ", " + _shoppingTestContext.User.Address.PostalCode);
+    Console.WriteLine("User phone: " + _shoppingTestContext.User.Phone);
+    Console.WriteLine("User date of birth: " + _shoppingTestContext.User.Dob);
+    Console.WriteLine("User password: " + _shoppingTestContext.User.Password);
+    Console.WriteLine("User email: " + _shoppingTestContext.User.Email);    
+    Console.WriteLine("User token: " + _shoppingTestContext.Token);
+
+}
+
+
+
+    
+
+
+
+
+
+
+    /*
     [Test]
 public async Task Create_New_User_Should_Be_Successful()
 {
@@ -62,5 +97,6 @@ Console.WriteLine($"Email is: {_shoppingTestContext.Emaill}");
 
 Assert.That(response.Status, Is.EqualTo(201));
 }    
+*/
 
 }
