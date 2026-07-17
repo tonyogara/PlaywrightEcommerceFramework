@@ -2,6 +2,7 @@
 using Microsoft.Playwright;
 using NUnit.Framework.Constraints;
 using PlaywrightEcommerceFramework.Models;
+using PlaywrightEcommerceFramework.ApiClients;
 //using PlaywrightApiDemo.Models;
 
 namespace PlaywrightEcommerceFramework.Workflows;
@@ -15,41 +16,24 @@ public class UserWorkflow
 
   
 
-    public UserWorkflow( 
-
-        IAPIRequestContext request, 
-
-        ShoppingTestContext context) 
-
+    public UserWorkflow( IAPIRequestContext request, ShoppingTestContext context) 
     { 
-
         _request = request; 
-
         _context = context; 
-
     } 
 
   
 
     public async Task CreateAndLogin() 
-
     { 
-
         var createUser = 
-
             new PostNewUser(_request, _context); 
 
-  
-
         var user = new Models.NewUser 
-
         { 
-
             FirstName = "Tony", 
-
             LastName = "OGara", 
 
-  
 
             Address = new Address 
 
@@ -90,6 +74,15 @@ public class UserWorkflow
   
 
         await createUser.CreatePostUserLoginAsync(user); 
+
+        var login = new PostUserLogin(_request);
+         var response = await login.CreatePostUserLoginAsync(new ExistingUser { email = user.Email, password = user.Password });
+        Console.WriteLine($"Status: {response.Status}");
+        var responseBody = await response.TextAsync();
+        Console.WriteLine($"Response: {responseBody}");
+        var responseJson = await response.JsonAsync();
+        //var token = responseJson.GetProperty("token").GetString();
+        //_context.Token = token; 
 
   
 /*
