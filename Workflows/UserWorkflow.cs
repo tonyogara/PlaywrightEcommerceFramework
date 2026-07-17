@@ -3,6 +3,9 @@ using Microsoft.Playwright;
 using NUnit.Framework.Constraints;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.ApiClients;
+using PlaywrightEcommerceFramework.ApiResponses;
+using System.Text.Json;
+
 //using PlaywrightApiDemo.Models;
 
 namespace PlaywrightEcommerceFramework.Workflows;
@@ -79,8 +82,27 @@ public class UserWorkflow
          var response = await login.CreatePostUserLoginAsync(new ExistingUser { email = user.Email, password = user.Password });
         Console.WriteLine($"Status: {response.Status}");
         var responseBody = await response.TextAsync();
+       
+       var loginResponse=JsonSerializer.Deserialize<LoginResponse>(responseBody);
+       var tokenIs = loginResponse?.Token;
+       Console.WriteLine($"Token issss :{tokenIs}");
+
+       
+       
+       
         Console.WriteLine($"Response: {responseBody}");
         var responseJson = await response.JsonAsync();
+       
+
+
+
+         Console.WriteLine(_context.CartId);
+         //Console.WriteLine($"Token is: {_context.Token}");
+         
+         //Console.WriteLine($"Token is: {responseJson.}");
+         Console.WriteLine(_context.User.FirstName);
+         Console.WriteLine(_context.User.Address.City);
+
         //var token = responseJson.GetProperty("token").GetString();
         //_context.Token = token; 
 
