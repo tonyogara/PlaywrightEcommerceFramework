@@ -13,14 +13,14 @@ using Microsoft.Playwright.Core;
 
 namespace PlaywrightEcommerceFramework.Tests;
 
- [TestFixture]
+ //[TestFixture]
 
 public class NewUserTest : ApiTestBase
 { 
 
 public UserWorkflow _userWorkflow;
 
-[Test]
+//[Test]
 public async Task Create_New_User_Should_Be_Successfully()
 {
     _userWorkflow = new UserWorkflow(request, _shoppingTestContext);

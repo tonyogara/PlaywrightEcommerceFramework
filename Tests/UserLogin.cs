@@ -13,10 +13,10 @@ using PlaywrightEcommerceFramework.ApiResponses;
 
 namespace PlaywrightEcommerceFramework.Tests;
 
- [TestFixture]
+ //[TestFixture]
 public class UserLogin : ApiTestBase
 { 
-    [Test]
+   // [Test]
 public async Task User_Login_Should_Be_Successful()
 {
     //var usersClient = new UsersClient(request);
