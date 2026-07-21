@@ -7,7 +7,9 @@ using PlaywrightEcommerceFramework.ApiClients;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.Core;
 using PlaywrightEcommerceFramework.Workflows;
+//20/07 
 
+//Progress
 
 namespace PlaywrightEcommerceFramework.Tests;
 
@@ -23,44 +25,23 @@ public class NewCart : ApiTestBase
 
     await userWorkFlow.CreateAndLogin();
 
-    Console.WriteLine(_shoppingTestContext.Token);
-
-
     var cart = new PostNewCart(request,_shoppingTestContext);
 
     var response = await cart.CreatePostNewCartAsync();
    
     var responseBody = await response.TextAsync();
 
-/*
-    var cartData = JsonSerializer.Deserialize<NewCart>(responseBody, new JsonSerializerOptions 
-{ 
-    PropertyNameCaseInsensitive = true 
-});
-
-int cartId = cartData.Id;
-*/
+    var cartData = JsonSerializer.Deserialize<CartResponse>(responseBody, new JsonSerializerOptions 
+    { 
+        PropertyNameCaseInsensitive = true 
+    });
 
 
-    //Console.WriteLine("Response id isssss: "+responseBody.);
-    
-     Console.WriteLine("------------");
-    //Console.WriteLine("Response id isssss: "+responseBody.);
-
-
-    /* Commented HJuly 20th
-
-    var response = await postNewCart.CreatePostNewCartAsync();
-
-var responseBody = await response.TextAsync();
-
-Console.WriteLine($"Cart ID: {cartId}");
-Console.WriteLine($"Status: {response.Status}");
-Console.WriteLine($"Response: {responseBody}");
-
-Assert.That(response.Status, Is.EqualTo(201), "Expected status code 201 for successful cart creation.");
-
-*/
+if (cartData != null)
+    {
+        string cartId = cartData.Id;
+        _shoppingTestContext.CartId = cartId;
+    }
 
 }    
 
