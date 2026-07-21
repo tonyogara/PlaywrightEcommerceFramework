@@ -13,10 +13,10 @@ using PlaywrightEcommerceFramework.Workflows;
 
 namespace PlaywrightEcommerceFramework.Tests;
 
- [TestFixture]
+ //[TestFixture]
 public class NewCart : ApiTestBase
 {
-    [Test]
+ //   [Test]
     [CancelAfter(5000)]
     public async Task New_Cart_Should_Be_Created_Successfully()
 {

@@ -6,13 +6,28 @@ using NUnit.Framework;
 using PlaywrightEcommerceFramework.ApiClients;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.Core;
+using PlaywrightEcommerceFramework.Workflows;
 
 
 namespace PlaywrightEcommerceFramework.Tests;
 
+
+
  //[TestFixture]
 public class NewCartProducts : ApiTestBase
 { 
+[Test]
+public async Task New_Cart_Should_Be_Created_Successfully()
+{  
+    var shoppingWorkflow = new ShoppingWorkflow(request, _shoppingTestContext);
+   
+    await shoppingWorkflow.CreateAndLoginAndNewCart();
+
+    
+
+
+}
+   /* 21/07 - Original code for this class
    // [Test]
 public async Task Add_Products_To_Cart_Should_Be_Successful()
 {
@@ -34,5 +49,7 @@ Console.WriteLine($"Response: {responseBody}");
 
 //Assert.That(response.Status, Is.EqualTo(201));
 }    
+*/
+
 
 }
