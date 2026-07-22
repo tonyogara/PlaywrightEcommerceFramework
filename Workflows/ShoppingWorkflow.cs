@@ -54,17 +54,18 @@ public async Task CreateAndLoginAndNewCart()
         var response = await createUser.CreatePostUserLoginAsync(user);
       //  Console.WriteLine($"Status for login: {response.Status}");
 
-/*
+
         //User login
         var login = new PostUserLogin(_request);
-        var response = await login.CreatePostUserLoginAsync(new ExistingUser { email = user.Email, password = user.Password });
+        var responseLogin = await login.CreatePostUserLoginAsync(new ExistingUser { email = user.Email, password = user.Password });
+       
+        Console.WriteLine($"Status for login: {responseLogin.Status}");
         
-        Console.WriteLine($"Status for login: {response.Status}");
-        
-        var responseBody = await response.TextAsync();
+        var responseBody = await responseLogin.TextAsync();
         var loginResponse=JsonSerializer.Deserialize<LoginResponse>(responseBody);
+       
         var tokenIs = loginResponse?.Token;
-        var responseJson = await response.JsonAsync();
+        //var responseJson = await response.JsonAsync();
         
 
         //Create a new cart
@@ -73,7 +74,7 @@ public async Task CreateAndLoginAndNewCart()
         var responseNewCart = await postNewCart.CreatePostNewCartAsync();
         Console.WriteLine("Response New Cart" + responseNewCart.ToString);
 
-*/
+
 
 
 
