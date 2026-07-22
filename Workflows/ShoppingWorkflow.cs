@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 using NUnit.Framework.Constraints;
 using PlaywrightEcommerceFramework.Models;
 using PlaywrightEcommerceFramework.ApiClients;
-using PlaywrightEcommerceFramework.ApiResponses;
+//using PlaywrightEcommerceFramework.ApiResponses.CreateCartResponse;
 using System.Text.Json;
 using NUnit.Framework;
 
@@ -62,17 +62,46 @@ public async Task CreateAndLoginAndNewCart()
         Console.WriteLine($"Status for login: {responseLogin.Status}");
         
         var responseBody = await responseLogin.TextAsync();
-        var loginResponse=JsonSerializer.Deserialize<LoginResponse>(responseBody);
-       
-        var tokenIs = loginResponse?.Token;
-        //var responseJson = await response.JsonAsync();
+        //Console.WriteLine("Response body is:" + responseBody);
+
+        var loginResponse = JsonSerializer.Deserialize<LoginResponse>(
+        responseBody,
+        new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        _context.Token = loginResponse!.Token;
+
+
+
+        
+        
         
 
         //Create a new cart
         var postNewCart = new PostNewCart(_request, _context);
 
         var responseNewCart = await postNewCart.CreatePostNewCartAsync();
-        Console.WriteLine("Response New Cart" + responseNewCart.ToString);
+        
+        //var responseNewCart = await postNewCart.CreatePostNewCartAsync();
+
+        var cartData = await responseNewCart.JsonAsync<CreateCartResponse>();
+
+        _context.CartId = cartData.Id;
+        Console.WriteLine($"Cart ID: {cartData?.Id}");
+        
+        
+        
+        
+        
+        
+        
+        //Console.WriteLine("Response New Cart" + responseNewCart);
+
+        //_context.Token = tokenIs;
+        //Add product to cart
+
 
 
 

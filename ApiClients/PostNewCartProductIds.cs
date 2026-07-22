@@ -17,13 +17,13 @@ public class PostNewCartProductIds
 
 
 
-    public async Task<IAPIResponse> CreatePostNewCartProductsAsync(NewCartProductsModel ncpm)
+    public async Task<IAPIResponse> CreatePostNewCartProductsAsync(NewCartProductsModel ncpm, String cart_ID)
     {
         //return await _request.PostAsync("/carts/{id}", 
-        return await _request.PostAsync("/carts/{id}", 
+        
+        return await _request.PostAsync($"/carts/{cart_ID}", 
         new APIRequestContextOptions
-        {
-            
+        {       
             DataObject = ncpm
         });
     }  

@@ -9,11 +9,15 @@ namespace PlaywrightEcommerceFramework.ApiClients;
 public class PostUserLogin
 {
     private readonly IAPIRequestContext _request;
+    
 
     public PostUserLogin(IAPIRequestContext request)
     {
         _request = request;
+        
     }
+
+
 
 
 
@@ -34,6 +38,8 @@ public class PostUserLogin
         {
             DataObject = postData
         });
+
+
     }   
 
 }
