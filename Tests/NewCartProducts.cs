@@ -36,6 +36,7 @@ public async Task New_Cart_Should_Be_Created_Successfully()
         Quantity = 2
     };
 
+    _shoppingTestContext.ProductId = newCartProductsModel.ProductId;
     var cartId = _shoppingTestContext.CartId;
 
     var response = await _postNewCartProductIds.CreatePostNewCartProductsAsync(newCartProductsModel, cartId);
@@ -44,8 +45,9 @@ public async Task New_Cart_Should_Be_Created_Successfully()
 
     Console.WriteLine(_shoppingTestContext.User.Email);
     Console.WriteLine(_shoppingTestContext.User.Password);
-    Console.WriteLine($"Statussssz: {response.Status}");
-    Console.WriteLine($"Responseeeex: {responseBody}");
+    Console.WriteLine(_shoppingTestContext.ProductId);
+    
+    
  
 
 
